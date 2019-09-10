@@ -15,6 +15,7 @@ class PlayableCharacter implements Character {
     int armorClass;
     HitPoints hitPoints;
     AbilityScore abilityScore;
+    int experiencePoints;
 
     public AttackResult attack(CharacterInformation enemy, int roll) {
         int damageModifier = abilityScore.getModifiers(abilityScore.getStrength());
@@ -48,6 +49,11 @@ class PlayableCharacter implements Character {
         return roll >= armorClass;
     }
 
+    @Override
+    public void increaseExperience(int amount) {
+        experiencePoints += amount;
+    }
+
     public static class PlayableCharacterBuilder {
         private static final int DEFAULT_ARMOR_CLASS = 10;
 
@@ -55,6 +61,7 @@ class PlayableCharacter implements Character {
             hitPoints = HitPoints.buildDefault();
             armorClass = DEFAULT_ARMOR_CLASS;
             abilityScore = AbilityScore.builder().build();
+            experiencePoints = 0;
         }
 
         PlayableCharacter build() {
@@ -64,7 +71,8 @@ class PlayableCharacter implements Character {
             return new PlayableCharacter(backgroundInformation,
                     armorClass + abilityScore.getModifiers(abilityScore.getDexterity()),
                     hitPointsWithConstitution,
-                    abilityScore);
+                    abilityScore,
+                    experiencePoints);
         }
     }
 }

@@ -7,16 +7,12 @@ import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @AllArgsConstructor
+@Getter
 class AttackResult {
     AttackType attackType;
-    @Getter
     int damageModifier;
 
-    boolean isCrit() {
-        return AttackType.CRIT == attackType;
-    }
-
     boolean isHit() {
-        return AttackType.HIT == attackType;
+        return AttackType.HIT == attackType || AttackType.CRIT == attackType;
     }
 }
