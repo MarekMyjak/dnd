@@ -18,7 +18,7 @@ class PlayableCharacterTest {
     @Test
     void defaultHitPointsTest() {
 //        given
-        int expectedDefaultHitPoints = 5;
+        int expectedDefaultHitPoints = 6;
         PlayableCharacter playableCharacter = PlayableCharacter.builder().build();
 //        then
         assertThat(playableCharacter.getHitPoints().getActual()).isEqualTo(expectedDefaultHitPoints);
@@ -40,7 +40,7 @@ class PlayableCharacterTest {
     @Test
     void minimalHitPointsTest() {
 //        given
-        int expectedHitPoints = 1;
+        int expectedHitPoints = 6;
         PlayableCharacter playableCharacter = PlayableCharacter.builder()
                 .abilityScore(AbilityScore.builder()
                         .constitution(1)

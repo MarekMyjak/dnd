@@ -16,14 +16,14 @@ class PlayableCharacter implements Character {
     HitPoints hitPoints;
     AbilityScore abilityScore;
     int experiencePoints;
+    int level;
 
     public AttackResult attack(CharacterInformation enemy, int roll) {
         int damageModifier = abilityScore.getModifiers(abilityScore.getStrength());
-        int attackRollModifier = abilityScore.getModifiers(abilityScore.getStrength());
         if (roll == 20) {
             return new AttackResult(AttackType.CRIT, damageModifier);
         }
-        if (enemy.isHit(roll + attackRollModifier)) {
+        if (enemy.isHit(roll + getAttackRollModifier())) {
             return new AttackResult(AttackType.HIT, damageModifier);
         }
         return new AttackResult(AttackType.MISS, damageModifier);
@@ -32,6 +32,11 @@ class PlayableCharacter implements Character {
     @Override
     public void takeDamage(int amount) {
         hitPoints.change(-amount);
+    }
+
+    @Override
+    public int getAttackRollModifier() {
+        return abilityScore.getModifiers(abilityScore.getStrength()) + level - 1;
     }
 
     @Override
@@ -52,6 +57,14 @@ class PlayableCharacter implements Character {
     @Override
     public void increaseExperience(int amount) {
         experiencePoints += amount;
+        while ((experiencePoints / 1000.0) >= level) {
+            increaseLevel();
+        }
+    }
+
+    private void increaseLevel() {
+        level += 1;
+        hitPoints.increaseLevel(abilityScore);
     }
 
     public static class PlayableCharacterBuilder {
@@ -62,6 +75,7 @@ class PlayableCharacter implements Character {
             armorClass = DEFAULT_ARMOR_CLASS;
             abilityScore = AbilityScore.builder().build();
             experiencePoints = 0;
+            level = 1;
         }
 
         PlayableCharacter build() {
@@ -72,7 +86,8 @@ class PlayableCharacter implements Character {
                     armorClass + abilityScore.getModifiers(abilityScore.getDexterity()),
                     hitPointsWithConstitution,
                     abilityScore,
-                    experiencePoints);
+                    experiencePoints,
+                    level);
         }
     }
 }
