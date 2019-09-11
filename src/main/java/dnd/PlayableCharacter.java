@@ -36,7 +36,7 @@ class PlayableCharacter implements Character {
 
     @Override
     public int getAttackRollModifier() {
-        return abilityScore.getModifiers(abilityScore.getStrength()) + level - 1;
+        return abilityScore.getModifiers(abilityScore.getStrength()) + Math.floorDiv(level, 2);
     }
 
     @Override

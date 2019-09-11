@@ -24,6 +24,19 @@ class LevelingTest {
     }
 
     @Test
+    void levelingOfDefaultCharacterTwoLevelsTest() {
+//        given
+        Character character = PlayableCharacter.builder().build();
+//        when
+        character.increaseExperience(2000);
+//        then
+        assertThat(character.getLevel()).isEqualTo(3);
+        assertThat(character.getHitPoints().getMaximum()).isEqualTo(18);
+        assertThat(character.getAttackRollModifier()).isEqualTo(1);
+    }
+
+
+    @Test
     void multipleLevelingOfDefaultCharacterTest() {
 //        given
         Character character = PlayableCharacter.builder().build();
@@ -32,7 +45,7 @@ class LevelingTest {
 //        then
         assertThat(character.getLevel()).isEqualTo(16);
         assertThat(character.getHitPoints().getMaximum()).isEqualTo(96);
-        assertThat(character.getAttackRollModifier()).isEqualTo(15);
+        assertThat(character.getAttackRollModifier()).isEqualTo(8);
     }
 
     @Test
