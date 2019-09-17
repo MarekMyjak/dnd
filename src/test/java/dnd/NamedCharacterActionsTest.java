@@ -19,6 +19,4 @@ class NamedCharacterActionsTest {
 //        then
         assertThat(playableCharacter.getName()).isEqualTo(name);
     }
-
-
 }
