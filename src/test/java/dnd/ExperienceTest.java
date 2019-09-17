@@ -2,18 +2,23 @@ package dnd;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class ExperienceTest {
 
+    @Mock
+    Character character;
+
+    @Mock
+    Character enemy;
+
     @Test
     void gainingExperienceInCombatTest() {
 //        given
-        Character character = Mockito.mock(Character.class);
         Mockito.when(character.attack(Mockito.any(), Mockito.anyInt())).thenReturn(AttackType.HIT);
-        Character enemy = Mockito.mock(Character.class);
 //        when
         Combat.attack(character, enemy, 10);
 //        then
@@ -23,9 +28,7 @@ class ExperienceTest {
     @Test
     void gainingExperienceTwoTimesTest() {
 //        given
-        Character character = Mockito.mock(Character.class);
         Mockito.when(character.attack(Mockito.any(), Mockito.anyInt())).thenReturn(AttackType.HIT);
-        Character enemy = Mockito.mock(Character.class);
 //        when
         Combat.attack(character, enemy, 10);
         Combat.attack(character, enemy, 10);
@@ -36,9 +39,7 @@ class ExperienceTest {
     @Test
     void notGainingExperienceOnMiss() {
 //        given
-        Character character = Mockito.mock(Character.class);
         Mockito.when(character.attack(Mockito.any(), Mockito.anyInt())).thenReturn(AttackType.MISS);
-        Character enemy = Mockito.mock(Character.class);
 //        when
         Combat.attack(character, enemy, 10);
 //        then
