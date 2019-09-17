@@ -4,22 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class PlayableCharacterTest {
-
-    @Test
-    void defaultArmorClassTest() {
-//        given
-        int expectedDefaultArmorClass = 10;
-        PlayableCharacter playableCharacter = PlayableCharacter.builder().build();
-//        then
-        assertThat(playableCharacter.getArmorClass()).isEqualTo(expectedDefaultArmorClass);
-    }
+class CharacterHitPointsTest {
 
     @Test
     void defaultHitPointsTest() {
 //        given
         int expectedDefaultHitPoints = 6;
-        PlayableCharacter playableCharacter = PlayableCharacter.builder().build();
+        Character playableCharacter = PlayableCharacter.builder().build();
 //        then
         assertThat(playableCharacter.getHitPoints().getActual()).isEqualTo(expectedDefaultHitPoints);
     }
@@ -28,7 +19,7 @@ class PlayableCharacterTest {
     void hitPointsWithConstitutionModifierTest() {
 //        given
         int expectedHitPoints = 7;
-        PlayableCharacter playableCharacter = PlayableCharacter.builder()
+        Character playableCharacter = PlayableCharacter.builder()
                 .abilityScore(AbilityScore.builder()
                         .constitution(14)
                         .build())
@@ -41,7 +32,7 @@ class PlayableCharacterTest {
     void minimalHitPointsTest() {
 //        given
         int expectedHitPoints = 6;
-        PlayableCharacter playableCharacter = PlayableCharacter.builder()
+        Character playableCharacter = PlayableCharacter.builder()
                 .abilityScore(AbilityScore.builder()
                         .constitution(1)
                         .build())

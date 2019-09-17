@@ -10,9 +10,7 @@ class ArmorClassTest {
     void defaultArmorClassTest() {
 //        given
         int expectedDefaultArmorClass = 10;
-        CharacterInformation playableCharacter = PlayableCharacter
-                .builder()
-                .build();
+        CharacterInformation playableCharacter = PlayableCharacter.builder().build();
 //        then
         assertThat(playableCharacter.getArmorClass()).isEqualTo(expectedDefaultArmorClass);
     }
