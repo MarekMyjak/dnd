@@ -14,8 +14,7 @@ class ArmorClassTest {
                 .builder()
                 .build();
 //        then
-        assertThat(playableCharacter.isHit(expectedDefaultArmorClass - 1)).isEqualTo(false);
-        assertThat(playableCharacter.isHit(expectedDefaultArmorClass)).isEqualTo(true);
+        assertThat(playableCharacter.getArmorClass()).isEqualTo(expectedDefaultArmorClass);
     }
 
     @Test
@@ -29,7 +28,6 @@ class ArmorClassTest {
                         .build())
                 .build();
 //        then
-        assertThat(playableCharacter.isHit(expectedDefaultArmorClass - 1)).isEqualTo(false);
-        assertThat(playableCharacter.isHit(expectedDefaultArmorClass)).isEqualTo(true);
+        assertThat(playableCharacter.getArmorClass()).isEqualTo(expectedDefaultArmorClass);
     }
 }

@@ -13,4 +13,6 @@ interface CharacterInformation extends Named {
     void increaseExperience(int i);
 
     int getLevel();
+
+    int getArmorClass();
 }
