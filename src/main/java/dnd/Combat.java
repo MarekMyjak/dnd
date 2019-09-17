@@ -13,12 +13,14 @@ class Combat {
             AttackType.CRIT, x -> CRITICAL_DAMAGE_MULTIPLIER * x
     );
 
-    static void attack(Character attacker, Character enemy, int roll) {
+    static boolean attack(Character attacker, Character enemy, int roll) {
         AttackResult attackResult = attacker.attack(enemy, roll);
         if (attackResult.isHit()) {
             enemy.takeDamage(calculateDamage(attackResult.getDamageModifier(), attackResult));
             attacker.increaseExperience(EXPERIENCE_POINT_FOR_SUCCESSFUL_ATTACK);
+            return true;
         }
+        return false;
     }
 
     private static int calculateDamage(int damageModifier, AttackResult attackResult) {
