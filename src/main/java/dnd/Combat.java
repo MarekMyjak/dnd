@@ -14,17 +14,17 @@ class Combat {
     );
 
     static boolean attack(Character attacker, Character enemy, int roll) {
-        AttackResult attackResult = attacker.attack(enemy, roll);
-        if (attackResult.isHit()) {
-            enemy.takeDamage(calculateDamage(attackResult.getDamageModifier(), attackResult));
+        AttackType attackType = attacker.attack(enemy, roll);
+        if (AttackType.isHit(attackType)) {
+            enemy.takeDamage(calculateDamage(attacker.getDamageModifier(), attackType));
             attacker.increaseExperience(EXPERIENCE_POINT_FOR_SUCCESSFUL_ATTACK);
             return true;
         }
         return false;
     }
 
-    private static int calculateDamage(int damageModifier, AttackResult attackResult) {
-        int amount = damageModifierMap.get(attackResult.getAttackType()).apply(DAMAGE_AMOUNT + damageModifier);
+    private static int calculateDamage(int damageModifier, AttackType attackType) {
+        int amount = damageModifierMap.get(attackType).apply(DAMAGE_AMOUNT + damageModifier);
         if (amount < 1) {
             amount = 1;
         }

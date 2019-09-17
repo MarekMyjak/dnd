@@ -6,5 +6,9 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum AttackType {
-    HIT, CRIT, MISS
+    HIT, CRIT, MISS;
+
+    static boolean isHit(AttackType attackType){
+        return HIT == attackType || CRIT == attackType;
+    }
 }

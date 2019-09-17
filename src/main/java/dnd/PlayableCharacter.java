@@ -18,15 +18,14 @@ class PlayableCharacter implements Character {
     int experiencePoints;
     int level;
 
-    public AttackResult attack(CharacterInformation enemy, int roll) {
-        int damageModifier = abilityScore.getModifiers(abilityScore.getStrength());
+    public AttackType attack(CharacterInformation enemy, int roll) {
         if (roll == 20) {
-            return new AttackResult(AttackType.CRIT, damageModifier);
+            return AttackType.CRIT;
         }
         if (enemy.isHit(roll + getAttackRollModifier())) {
-            return new AttackResult(AttackType.HIT, damageModifier);
+            return AttackType.HIT;
         }
-        return new AttackResult(AttackType.MISS, damageModifier);
+        return AttackType.MISS;
     }
 
     @Override
@@ -37,6 +36,12 @@ class PlayableCharacter implements Character {
     @Override
     public int getAttackRollModifier() {
         return abilityScore.getModifiers(abilityScore.getStrength()) + Math.floorDiv(level, 2);
+    }
+
+    @Override
+    public int getDamageModifier() {
+        return abilityScore.getModifiers(abilityScore.getStrength());
+
     }
 
     @Override
