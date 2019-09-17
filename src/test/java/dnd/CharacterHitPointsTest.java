@@ -10,34 +10,34 @@ class CharacterHitPointsTest {
     void defaultHitPointsTest() {
 //        given
         int expectedDefaultHitPoints = 6;
-        Character playableCharacter = PlayableCharacter.builder().build();
+        Character character = PlayableCharacter.builder().build();
 //        then
-        assertThat(playableCharacter.getHitPoints().getActual()).isEqualTo(expectedDefaultHitPoints);
+        assertThat(character.getHitPoints().getActual()).isEqualTo(expectedDefaultHitPoints);
     }
 
     @Test
     void hitPointsWithConstitutionModifierTest() {
 //        given
         int expectedHitPoints = 7;
-        Character playableCharacter = PlayableCharacter.builder()
+        Character character = PlayableCharacter.builder()
                 .abilityScore(AbilityScore.builder()
                         .constitution(14)
                         .build())
                 .build();
 //        then
-        assertThat(playableCharacter.getHitPoints().getActual()).isEqualTo(expectedHitPoints);
+        assertThat(character.getHitPoints().getActual()).isEqualTo(expectedHitPoints);
     }
 
     @Test
     void minimalHitPointsTest() {
 //        given
         int expectedHitPoints = 6;
-        Character playableCharacter = PlayableCharacter.builder()
+        Character character = PlayableCharacter.builder()
                 .abilityScore(AbilityScore.builder()
                         .constitution(1)
                         .build())
                 .build();
 //        then
-        assertThat(playableCharacter.getHitPoints().getActual()).isEqualTo(expectedHitPoints);
+        assertThat(character.getHitPoints().getActual()).isEqualTo(expectedHitPoints);
     }
 }

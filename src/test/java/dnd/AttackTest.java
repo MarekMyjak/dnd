@@ -10,7 +10,7 @@ class AttackTest {
     void successfulAttackWithMinimumRollTest() {
 //        given
         int roll = 10;
-        PlayableCharacter enemy = PlayableCharacter.builder().build();
+        Character enemy = PlayableCharacter.builder().build();
         Character character = PlayableCharacter.builder().build();
 //        when
 //        then
@@ -20,7 +20,7 @@ class AttackTest {
     @Test
     void successfulAttackWithHigherRollTest() {
 //        given
-        PlayableCharacter enemy = PlayableCharacter.builder()
+        Character enemy = PlayableCharacter.builder()
                 .build();
         Character character = PlayableCharacter.builder().build();
         int roll = 12;
@@ -32,7 +32,7 @@ class AttackTest {
     @Test
     void successfulAttackWithNatural20Test() {
 //        given
-        PlayableCharacter enemy = PlayableCharacter.builder().build();
+        Character enemy = PlayableCharacter.builder().build();
         Character character = PlayableCharacter.builder().build();
         int roll = 20;
 //        when
@@ -43,7 +43,7 @@ class AttackTest {
     @Test
     void successfulAttackWithNatural20AndHighArmorTest() {
 //        given
-        PlayableCharacter enemy = PlayableCharacter.builder()
+        Character enemy = PlayableCharacter.builder()
                 .armorClass(30)
                 .build();
         Character character = PlayableCharacter.builder().build();
@@ -56,7 +56,7 @@ class AttackTest {
     @Test
     void missedAttackTest() {
 //        given
-        PlayableCharacter enemy = PlayableCharacter.builder()
+        Character enemy = PlayableCharacter.builder()
                 .build();
         Character character = PlayableCharacter.builder().build();
         int roll = 5;
@@ -69,7 +69,7 @@ class AttackTest {
     void successfulAttackWithStrengthModifierMinimumRollTest() {
 //        given
         int roll = 9;
-        PlayableCharacter enemy = PlayableCharacter.builder().build();
+        Character enemy = PlayableCharacter.builder().build();
         Character character = PlayableCharacter
                 .builder()
                 .abilityScore(AbilityScore.builder().strength(12).build())
@@ -77,6 +77,5 @@ class AttackTest {
 //        when
 //        then
         assertThat(Combat.attack(character, enemy, roll)). isEqualTo(true);
-
     }
 }
