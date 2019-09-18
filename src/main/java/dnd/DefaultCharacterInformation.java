@@ -32,9 +32,7 @@ class DefaultCharacterInformation implements CharacterInformation {
     }
 
     @Override
-    public void increaseExperience(int i) {
-
-    }
+    public void increaseExperience(int i) { }
 
     @Override
     public int getLevel() {
@@ -44,11 +42,6 @@ class DefaultCharacterInformation implements CharacterInformation {
     @Override
     public int getArmorClass() {
         return armorClass + abilityScore.getModifiers(abilityScore.getDexterity());
-    }
-
-    @Override
-    public String getName() {
-        return null;
     }
 
     public static class DefaultCharacterInformationBuilder {

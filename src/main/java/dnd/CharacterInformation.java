@@ -1,6 +1,6 @@
 package dnd;
 
-interface CharacterInformation extends Named {
+interface CharacterInformation {
 
     CharacterCondition getCharacterCondition();
 

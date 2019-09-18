@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @Builder
 class PlayableCharacter implements Character {
     CharacterInformation characterInformation;
-    BackgroundInformation backgroundInformation;
+    Named backgroundInformation;
     int armorClass;
     HitPoints hitPoints;
     AbilityScore abilityScore;
@@ -48,6 +48,11 @@ class PlayableCharacter implements Character {
     @Override
     public String getName() {
         return backgroundInformation.getName();
+    }
+
+    @Override
+    public Alignment getAlignment() {
+        return backgroundInformation.getAlignment();
     }
 
     @Override

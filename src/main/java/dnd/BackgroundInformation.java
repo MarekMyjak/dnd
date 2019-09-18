@@ -8,7 +8,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Builder
-class BackgroundInformation {
+class BackgroundInformation implements Named {
     String name;
     Alignment alignment;
 }

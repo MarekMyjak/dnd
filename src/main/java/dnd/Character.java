@@ -1,4 +1,4 @@
 package dnd;
 
-interface Character extends CharacterInformation, CharacterActions {
+interface Character extends CharacterInformation, CharacterActions, Named {
 }
