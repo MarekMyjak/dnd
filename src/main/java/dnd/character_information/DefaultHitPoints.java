@@ -1,4 +1,4 @@
-package dnd;
+package dnd.character_information;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
-class DefaultHitPoints implements HitPoints {
+public class DefaultHitPoints implements HitPoints {
     private static final int DEFAULT_HIT_POINTS = 5;
     private static final int MINIMUM_HIT_POINTS_FROM_CONSTITUTION = 1;
     int actual;

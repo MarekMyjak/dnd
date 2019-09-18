@@ -1,4 +1,4 @@
-package dnd;
+package dnd.character_information;
 
 import org.junit.jupiter.api.Test;
 

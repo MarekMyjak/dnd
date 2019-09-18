@@ -1,4 +1,4 @@
-package dnd;
+package dnd.character_information;
 
 import lombok.AccessLevel;
 import lombok.Builder;

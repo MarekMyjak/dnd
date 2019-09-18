@@ -1,5 +1,7 @@
 package dnd;
 
+import dnd.character_information.Character;
+
 import java.util.Map;
 import java.util.function.Function;
 
@@ -8,7 +10,7 @@ class Combat {
     private static final int CRITICAL_DAMAGE_MULTIPLIER = 2;
     private static final int EXPERIENCE_POINT_FOR_SUCCESSFUL_ATTACK = 10;
 
-    private static Map<AttackType, Function<Integer, Integer>> damageModifierMap = Map.of(
+    private static final Map<AttackType, Function<Integer, Integer>> damageModifierMap = Map.of(
             AttackType.HIT, x -> x,
             AttackType.CRIT, x -> CRITICAL_DAMAGE_MULTIPLIER * x
     );

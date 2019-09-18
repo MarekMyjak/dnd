@@ -1,5 +1,8 @@
-package dnd;
+package dnd.character_information;
 
+import dnd.AttackType;
+import dnd.PlayableCharacter;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,7 +17,7 @@ class AttackTest {
         Character character = PlayableCharacter.builder().build();
 //        when
 //        then
-        assertThat(Combat.attack(character, enemy, roll)).isEqualTo(true);
+        Assertions.assertThat(character.attack(enemy, roll)).isEqualTo(AttackType.HIT);
     }
 
     @Test
@@ -26,7 +29,7 @@ class AttackTest {
         int roll = 12;
 //        when
 //        then
-        assertThat(Combat.attack(character, enemy, roll)).isEqualTo(true);
+        Assertions.assertThat(character.attack(enemy, roll)).isEqualTo(AttackType.HIT);
     }
 
     @Test
@@ -37,7 +40,7 @@ class AttackTest {
         int roll = 20;
 //        when
 //        then
-        assertThat(Combat.attack(character, enemy, roll)).isEqualTo(true);
+        assertThat(character.attack(enemy, roll)).isEqualTo(AttackType.CRIT);
     }
 
     @Test
@@ -51,7 +54,7 @@ class AttackTest {
         int roll = 20;
 //        when
 //        then
-        assertThat(Combat.attack(character, enemy, roll)).isEqualTo(true);
+        assertThat(character.attack(enemy, roll)).isEqualTo(AttackType.CRIT);
     }
 
     @Test
@@ -63,22 +66,6 @@ class AttackTest {
         int roll = 5;
 //        when
 //        then
-        assertThat(Combat.attack(character, enemy, roll)).isEqualTo(false);
-    }
-
-    @Test
-    void successfulAttackWithStrengthModifierMinimumRollTest() {
-//        given
-        int roll = 9;
-        Character enemy = PlayableCharacter.builder().build();
-        Character character = PlayableCharacter
-                .builder()
-                .characterInformation(DefaultCharacterInformation.builder()
-                        .abilityScore(AbilityScore.builder().strength(12).build())
-                        .build())
-                .build();
-//        when
-//        then
-        assertThat(Combat.attack(character, enemy, roll)).isEqualTo(true);
+        assertThat(character.attack(enemy, roll)).isEqualTo(AttackType.MISS);
     }
 }

@@ -1,10 +1,10 @@
-package dnd;
+package dnd.character_information;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-enum Alignment {
+public enum Alignment {
     GOOD, EVIL, NEUTRAL
 }

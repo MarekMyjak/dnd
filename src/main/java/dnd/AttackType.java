@@ -8,7 +8,7 @@ import lombok.Getter;
 public enum AttackType {
     HIT, CRIT, MISS;
 
-    static boolean isHit(AttackType attackType){
+    static boolean isHit(AttackType attackType) {
         return HIT == attackType || CRIT == attackType;
     }
 }

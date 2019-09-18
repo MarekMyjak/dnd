@@ -1,7 +1,8 @@
-package dnd;
+package dnd.character_information;
 
-interface HitPoints {
+public interface HitPoints {
     int getActual();
+
     int getMaximum();
 
     void change(int i);

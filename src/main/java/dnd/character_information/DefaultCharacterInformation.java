@@ -1,4 +1,4 @@
-package dnd;
+package dnd.character_information;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -6,15 +6,15 @@ import lombok.experimental.FieldDefaults;
 
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-class DefaultCharacterInformation implements CharacterInformation {
+public class DefaultCharacterInformation implements CharacterInformation {
     AbilityScore abilityScore;
     int armorClass;
-    DefaultHitPoints hitPoints;
+    HitPoints hitPoints;
     int level;
     private int experiencePoints;
 
     @Override
-    public DefaultHitPoints getHitPoints() {
+    public HitPoints getHitPoints() {
         return hitPoints;
     }
 
@@ -67,7 +67,7 @@ class DefaultCharacterInformation implements CharacterInformation {
             level = DEFAULT_LEVEL;
         }
 
-        DefaultCharacterInformation build() {
+        public DefaultCharacterInformation build() {
             return new DefaultCharacterInformation(abilityScore,
                     armorClass,
                     hitPoints != null ? hitPoints : new DefaultHitPoints(abilityScore),
