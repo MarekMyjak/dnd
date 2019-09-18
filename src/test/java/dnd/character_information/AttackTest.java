@@ -1,6 +1,7 @@
 package dnd.character_information;
 
 import dnd.AttackType;
+import dnd.Character;
 import dnd.PlayableCharacter;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

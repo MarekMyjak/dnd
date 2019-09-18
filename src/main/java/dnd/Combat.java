@@ -1,7 +1,5 @@
 package dnd;
 
-import dnd.character_information.Character;
-
 import java.util.Map;
 import java.util.function.Function;
 
