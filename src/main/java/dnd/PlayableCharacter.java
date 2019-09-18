@@ -1,6 +1,7 @@
 package dnd;
 
 import dnd.character_information.*;
+import dnd.character_information.Character;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Builder
-public class PlayableCharacter implements dnd.character_information.Character {
+public class PlayableCharacter implements Character {
     Named backgroundInformation;
     @Builder.Default
     CharacterInformation characterInformation = DefaultCharacterInformation.builder().build();
