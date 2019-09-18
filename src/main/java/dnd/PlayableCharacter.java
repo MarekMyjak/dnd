@@ -11,6 +11,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Builder
 class PlayableCharacter implements Character {
+    CharacterInformation characterInformation;
     BackgroundInformation backgroundInformation;
     int armorClass;
     HitPoints hitPoints;
@@ -76,7 +77,7 @@ class PlayableCharacter implements Character {
         private static final int DEFAULT_ARMOR_CLASS = 10;
 
         public PlayableCharacterBuilder() {
-            hitPoints = HitPoints.buildDefault();
+            characterInformation = DefaultCharacterInformation.builder().build();
             armorClass = DEFAULT_ARMOR_CLASS;
             abilityScore = AbilityScore.builder().build();
             experiencePoints = 0;
@@ -84,12 +85,11 @@ class PlayableCharacter implements Character {
         }
 
         PlayableCharacter build() {
-            HitPoints hitPointsWithConstitution = HitPoints.buildWithConstitution(hitPoints.getMaximum(),
-                    abilityScore);
-
-            return new PlayableCharacter(backgroundInformation,
+            hitPoints = new DefaultHitPoints(abilityScore);
+            return new PlayableCharacter(characterInformation,
+                    backgroundInformation,
                     armorClass + abilityScore.getModifiers(abilityScore.getDexterity()),
-                    hitPointsWithConstitution,
+                    hitPoints,
                     abilityScore,
                     experiencePoints,
                     level);

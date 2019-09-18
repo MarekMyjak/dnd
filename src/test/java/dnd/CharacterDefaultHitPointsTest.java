@@ -4,13 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CharacterHitPointsTest {
+class CharacterDefaultHitPointsTest {
 
     @Test
     void defaultHitPointsTest() {
 //        given
         int expectedDefaultHitPoints = 6;
-        Character character = PlayableCharacter.builder().build();
+        CharacterInformation character = DefaultCharacterInformation.builder().build();
 //        then
         assertThat(character.getHitPoints().getActual()).isEqualTo(expectedDefaultHitPoints);
     }
@@ -19,7 +19,7 @@ class CharacterHitPointsTest {
     void hitPointsWithConstitutionModifierTest() {
 //        given
         int expectedHitPoints = 7;
-        Character character = PlayableCharacter.builder()
+        CharacterInformation character = DefaultCharacterInformation.builder()
                 .abilityScore(AbilityScore.builder()
                         .constitution(14)
                         .build())
@@ -32,7 +32,7 @@ class CharacterHitPointsTest {
     void minimalHitPointsTest() {
 //        given
         int expectedHitPoints = 6;
-        Character character = PlayableCharacter.builder()
+        CharacterInformation character = DefaultCharacterInformation.builder()
                 .abilityScore(AbilityScore.builder()
                         .constitution(1)
                         .build())

@@ -19,7 +19,7 @@ class LevelingTest {
         character.increaseExperience(1000);
 //        then
         assertThat(character.getLevel()).isEqualTo(2);
-        assertThat(character.getHitPoints().getMaximum()).isEqualTo(12);
+        assertThat(character.getHitPoints().getActual()).isEqualTo(12);
         assertThat(character.getAttackRollModifier()).isEqualTo(1);
     }
 
@@ -31,7 +31,7 @@ class LevelingTest {
         character.increaseExperience(2000);
 //        then
         assertThat(character.getLevel()).isEqualTo(3);
-        assertThat(character.getHitPoints().getMaximum()).isEqualTo(18);
+        assertThat(character.getHitPoints().getActual()).isEqualTo(18);
         assertThat(character.getAttackRollModifier()).isEqualTo(1);
     }
 
@@ -44,7 +44,7 @@ class LevelingTest {
         character.increaseExperience(15000);
 //        then
         assertThat(character.getLevel()).isEqualTo(16);
-        assertThat(character.getHitPoints().getMaximum()).isEqualTo(96);
+        assertThat(character.getHitPoints().getActual()).isEqualTo(96);
         assertThat(character.getAttackRollModifier()).isEqualTo(8);
     }
 
@@ -56,6 +56,7 @@ class LevelingTest {
                         .constitution(16)
                         .build())
                 .build();
+        assertThat(character.getHitPoints().getMaximum()).isEqualTo(8);
 //        when
         character.increaseExperience(1000);
 //        then
@@ -76,7 +77,7 @@ class LevelingTest {
         character.increaseExperience(1000);
 //        then
         assertThat(character.getLevel()).isEqualTo(2);
-        assertThat(character.getHitPoints().getMaximum()).isEqualTo(12);
+        assertThat(character.getHitPoints().getActual()).isEqualTo(12);
         assertThat(character.getAttackRollModifier()).isEqualTo(1);
     }
 
@@ -92,7 +93,7 @@ class LevelingTest {
         character.increaseExperience(1000);
 //        then
         assertThat(character.getLevel()).isEqualTo(2);
-        assertThat(character.getHitPoints().getMaximum()).isEqualTo(12);
+        assertThat(character.getHitPoints().getActual()).isEqualTo(12);
         assertThat(character.getAttackRollModifier()).isEqualTo(4);
     }
 }
