@@ -1,7 +1,7 @@
 package dnd;
 
-import dnd.character_information.*;
 import dnd.character_information.Character;
+import dnd.character_information.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
