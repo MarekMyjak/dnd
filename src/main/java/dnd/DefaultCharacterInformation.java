@@ -14,11 +14,6 @@ class DefaultCharacterInformation implements CharacterInformation {
     private int experiencePoints;
 
     @Override
-    public CharacterCondition getCharacterCondition() {
-        return null;
-    }
-
-    @Override
     public DefaultHitPoints getHitPoints() {
         return hitPoints;
     }

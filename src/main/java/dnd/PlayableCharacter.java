@@ -11,13 +11,9 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Builder
 class PlayableCharacter implements Character {
-    CharacterInformation characterInformation;
     Named backgroundInformation;
-    int armorClass;
-    HitPoints hitPoints;
-    AbilityScore abilityScore;
-    int experiencePoints;
-    int level;
+    @Builder.Default
+    CharacterInformation characterInformation = DefaultCharacterInformation.builder().build();
 
     public AttackType attack(CharacterInformation enemy, int roll) {
         if (roll == 20) {
@@ -31,12 +27,12 @@ class PlayableCharacter implements Character {
 
     @Override
     public void takeDamage(int amount) {
-        hitPoints.change(-amount);
+        characterInformation.getHitPoints().change(-amount);
     }
 
     @Override
     public int getAttackRollModifier() {
-        return abilityScore.getModifiers(abilityScore.getStrength()) + Math.floorDiv(level, 2);
+        return characterInformation.getAttackRollModifier();
     }
 
     @Override
@@ -46,7 +42,7 @@ class PlayableCharacter implements Character {
 
     @Override
     public int getDamageModifier() {
-        return abilityScore.getModifiers(abilityScore.getStrength());
+        return characterInformation.getAttackRollModifier();
 
     }
 
@@ -61,48 +57,32 @@ class PlayableCharacter implements Character {
     }
 
     @Override
-    public CharacterCondition getCharacterCondition() {
-        return hitPoints.getActual() <= 0 ? CharacterCondition.DEAD : CharacterCondition.ALIVE;
+    public HitPoints getHitPoints() {
+        return characterInformation.getHitPoints();
     }
 
     @Override
     public boolean isHit(int roll) {
-        return roll >= armorClass;
+        return roll >= characterInformation.getArmorClass();
+    }
+
+    @Override
+    public int getExperiencePoints() {
+        return characterInformation.getExperiencePoints();
     }
 
     @Override
     public void increaseExperience(int amount) {
-        experiencePoints += amount;
-        while ((experiencePoints / 1000.0) >= level) {
-            increaseLevel();
-        }
+        characterInformation.increaseExperience(amount);
     }
 
-    private void increaseLevel() {
-        level += 1;
-        hitPoints.increaseLevel(abilityScore);
+    @Override
+    public int getLevel() {
+        return characterInformation.getLevel();
     }
 
-    public static class PlayableCharacterBuilder {
-        private static final int DEFAULT_ARMOR_CLASS = 10;
-
-        public PlayableCharacterBuilder() {
-            characterInformation = DefaultCharacterInformation.builder().build();
-            armorClass = DEFAULT_ARMOR_CLASS;
-            abilityScore = AbilityScore.builder().build();
-            experiencePoints = 0;
-            level = 1;
-        }
-
-        PlayableCharacter build() {
-            hitPoints = new DefaultHitPoints(abilityScore);
-            return new PlayableCharacter(characterInformation,
-                    backgroundInformation,
-                    armorClass + abilityScore.getModifiers(abilityScore.getDexterity()),
-                    hitPoints,
-                    abilityScore,
-                    experiencePoints,
-                    level);
-        }
+    @Override
+    public int getArmorClass() {
+        return characterInformation.getArmorClass();
     }
 }

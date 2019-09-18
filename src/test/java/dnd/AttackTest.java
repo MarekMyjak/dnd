@@ -14,7 +14,7 @@ class AttackTest {
         Character character = PlayableCharacter.builder().build();
 //        when
 //        then
-        assertThat(Combat.attack(character, enemy, roll)). isEqualTo(true);
+        assertThat(Combat.attack(character, enemy, roll)).isEqualTo(true);
     }
 
     @Test
@@ -26,7 +26,7 @@ class AttackTest {
         int roll = 12;
 //        when
 //        then
-        assertThat(Combat.attack(character, enemy, roll)). isEqualTo(true);
+        assertThat(Combat.attack(character, enemy, roll)).isEqualTo(true);
     }
 
     @Test
@@ -37,20 +37,21 @@ class AttackTest {
         int roll = 20;
 //        when
 //        then
-        assertThat(Combat.attack(character, enemy, roll)). isEqualTo(true);
+        assertThat(Combat.attack(character, enemy, roll)).isEqualTo(true);
     }
 
     @Test
     void successfulAttackWithNatural20AndHighArmorTest() {
 //        given
         Character enemy = PlayableCharacter.builder()
-                .armorClass(30)
+                .characterInformation(
+                        DefaultCharacterInformation.builder().armorClass(30).build())
                 .build();
         Character character = PlayableCharacter.builder().build();
         int roll = 20;
 //        when
 //        then
-        assertThat(Combat.attack(character, enemy, roll)). isEqualTo(true);
+        assertThat(Combat.attack(character, enemy, roll)).isEqualTo(true);
     }
 
     @Test
@@ -62,7 +63,7 @@ class AttackTest {
         int roll = 5;
 //        when
 //        then
-        assertThat(Combat.attack(character, enemy, roll)). isEqualTo(false);
+        assertThat(Combat.attack(character, enemy, roll)).isEqualTo(false);
     }
 
     @Test
@@ -72,10 +73,12 @@ class AttackTest {
         Character enemy = PlayableCharacter.builder().build();
         Character character = PlayableCharacter
                 .builder()
-                .abilityScore(AbilityScore.builder().strength(12).build())
+                .characterInformation(DefaultCharacterInformation.builder()
+                        .abilityScore(AbilityScore.builder().strength(12).build())
+                        .build())
                 .build();
 //        when
 //        then
-        assertThat(Combat.attack(character, enemy, roll)). isEqualTo(true);
+        assertThat(Combat.attack(character, enemy, roll)).isEqualTo(true);
     }
 }

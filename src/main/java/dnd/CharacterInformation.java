@@ -2,8 +2,6 @@ package dnd;
 
 interface CharacterInformation {
 
-    CharacterCondition getCharacterCondition();
-
     HitPoints getHitPoints();
 
     boolean isHit(int roll);
