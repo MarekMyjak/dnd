@@ -30,7 +30,7 @@ class DefaultCharacterInformation implements CharacterInformation {
 
     @Override
     public int getExperiencePoints() {
-        return 0;
+        return experiencePoints;
     }
 
     @Override

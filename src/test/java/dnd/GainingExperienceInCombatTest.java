@@ -7,7 +7,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class ExperienceTest {
+class GainingExperienceInCombatTest {
 
     @Mock
     Character character;
