@@ -17,4 +17,6 @@ interface CharacterInformation {
     int getArmorClass();
 
     int getAttackRollModifier();
+
+    boolean isDead();
 }

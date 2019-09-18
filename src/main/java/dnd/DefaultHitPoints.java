@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 class DefaultHitPoints implements HitPoints {
@@ -14,7 +14,7 @@ class DefaultHitPoints implements HitPoints {
     int actual;
     int maximum;
 
-    public DefaultHitPoints(AbilityScore abilityScore) {
+    DefaultHitPoints(AbilityScore abilityScore) {
         maximum = DEFAULT_HIT_POINTS + getConstitutionModifiersWithMinimumValue(abilityScore);
         actual = maximum;
     }

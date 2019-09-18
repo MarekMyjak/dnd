@@ -57,6 +57,11 @@ class DefaultCharacterInformation implements CharacterInformation {
         return abilityScore.getModifiers(abilityScore.getStrength()) + Math.floorDiv(level, 2);
     }
 
+    @Override
+    public boolean isDead() {
+        return hitPoints.getActual() <= 0;
+    }
+
     public static class DefaultCharacterInformationBuilder {
         private static final int DEFAULT_ARMOR_CLASS = 10;
         static final int DEFAULT_LEVEL = 1;
@@ -64,14 +69,13 @@ class DefaultCharacterInformation implements CharacterInformation {
         public DefaultCharacterInformationBuilder() {
             abilityScore = AbilityScore.builder().build();
             armorClass = DEFAULT_ARMOR_CLASS;
-            hitPoints = new DefaultHitPoints(abilityScore);
             level = DEFAULT_LEVEL;
         }
 
         DefaultCharacterInformation build() {
             return new DefaultCharacterInformation(abilityScore,
                     armorClass,
-                    new DefaultHitPoints(abilityScore),
+                    hitPoints != null ? hitPoints : new DefaultHitPoints(abilityScore),
                     level,
                     experiencePoints);
         }

@@ -40,6 +40,11 @@ class PlayableCharacter implements Character {
     }
 
     @Override
+    public boolean isDead() {
+        return characterInformation.isDead();
+    }
+
+    @Override
     public int getDamageModifier() {
         return abilityScore.getModifiers(abilityScore.getStrength());
 
