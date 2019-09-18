@@ -15,4 +15,6 @@ interface CharacterInformation {
     int getLevel();
 
     int getArmorClass();
+
+    int getAttackRollModifier();
 }

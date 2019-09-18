@@ -1,15 +1,17 @@
 package dnd;
 
+import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.experimental.FieldDefaults;
 
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 class DefaultCharacterInformation implements CharacterInformation {
-    @Builder.Default
     AbilityScore abilityScore;
-    @Builder.Default
     int armorClass;
-    @Builder.Default
-    DefaultHitPoints defaultHitPoints;
+    DefaultHitPoints hitPoints;
+    int level;
+    private int experiencePoints;
 
     @Override
     public CharacterCondition getCharacterCondition() {
@@ -18,7 +20,7 @@ class DefaultCharacterInformation implements CharacterInformation {
 
     @Override
     public DefaultHitPoints getHitPoints() {
-        return defaultHitPoints;
+        return hitPoints;
     }
 
     @Override
@@ -32,11 +34,17 @@ class DefaultCharacterInformation implements CharacterInformation {
     }
 
     @Override
-    public void increaseExperience(int i) { }
+    public void increaseExperience(int amount) {
+        experiencePoints += amount;
+        while ((experiencePoints / 1000.0) >= level) {
+            level += 1;
+            hitPoints.increaseLevel(abilityScore);
+        }
+    }
 
     @Override
     public int getLevel() {
-        return 0;
+        return level;
     }
 
     @Override
@@ -44,19 +52,28 @@ class DefaultCharacterInformation implements CharacterInformation {
         return armorClass + abilityScore.getModifiers(abilityScore.getDexterity());
     }
 
+    @Override
+    public int getAttackRollModifier() {
+        return abilityScore.getModifiers(abilityScore.getStrength()) + Math.floorDiv(level, 2);
+    }
+
     public static class DefaultCharacterInformationBuilder {
         private static final int DEFAULT_ARMOR_CLASS = 10;
+        static final int DEFAULT_LEVEL = 1;
 
         public DefaultCharacterInformationBuilder() {
-            this.abilityScore = AbilityScore.builder().build();
-            this.armorClass = DEFAULT_ARMOR_CLASS;
-            this.defaultHitPoints = new DefaultHitPoints(abilityScore);
+            abilityScore = AbilityScore.builder().build();
+            armorClass = DEFAULT_ARMOR_CLASS;
+            hitPoints = new DefaultHitPoints(abilityScore);
+            level = DEFAULT_LEVEL;
         }
 
         DefaultCharacterInformation build() {
             return new DefaultCharacterInformation(abilityScore,
                     armorClass,
-                    new DefaultHitPoints(abilityScore));
+                    new DefaultHitPoints(abilityScore),
+                    level,
+                    experiencePoints);
         }
     }
 }
