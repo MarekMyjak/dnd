@@ -5,6 +5,7 @@ import dnd.Character;
 import dnd.PlayableCharacter;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -46,7 +47,8 @@ class AttackTest {
     @Test
     void successfulAttackWithNatural20AndHighArmorTest() {
 //        given
-        CharacterInformation enemy = DefaultCharacterInformation.builder().armorClass(30).build();
+        CharacterInformation enemy = Mockito.mock(CharacterInformation.class);
+        Mockito.when(enemy.getArmorClass()).thenReturn(30);
         Character character = PlayableCharacter.builder().build();
         int roll = 20;
 //        when

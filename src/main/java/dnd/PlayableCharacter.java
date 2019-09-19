@@ -1,6 +1,8 @@
 package dnd;
 
-import dnd.character_information.*;
+import dnd.character_information.CharacterInformation;
+import dnd.character_information.DefaultCharacterInformation;
+import dnd.character_information.Named;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +22,7 @@ public class PlayableCharacter implements Character {
         if (roll == 20) {
             return AttackType.CRIT;
         }
-        if (enemy.isHit(roll + getAttackRollModifier())) {
+        if (enemy.getArmorClass() <= roll + getAttackRollModifier()) {
             return AttackType.HIT;
         }
         return AttackType.MISS;

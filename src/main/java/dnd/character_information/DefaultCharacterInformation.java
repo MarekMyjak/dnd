@@ -9,15 +9,10 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DefaultCharacterInformation implements CharacterInformation {
+    private static final int DEFAULT_ARMOR_CLASS = 10;
     AbilityScore abilityScore;
-    int armorClass;
     HitPoints hitPoints;
     private int experiencePoints;
-
-    @Override
-    public boolean isHit(int roll) {
-        return roll >= armorClass;
-    }
 
     @Override
     public void increaseExperience(int amount) {
@@ -36,7 +31,7 @@ public class DefaultCharacterInformation implements CharacterInformation {
 
     @Override
     public int getArmorClass() {
-        return armorClass + abilityScore.getModifiers(abilityScore.getDexterity());
+        return DEFAULT_ARMOR_CLASS + abilityScore.getModifiers(abilityScore.getDexterity());
     }
 
     @Override
@@ -50,17 +45,13 @@ public class DefaultCharacterInformation implements CharacterInformation {
     }
 
     public static class DefaultCharacterInformationBuilder {
-        private static final int DEFAULT_ARMOR_CLASS = 10;
-        static final int DEFAULT_LEVEL = 1;
 
         public DefaultCharacterInformationBuilder() {
             abilityScore = AbilityScore.builder().build();
-            armorClass = DEFAULT_ARMOR_CLASS;
         }
 
         public DefaultCharacterInformation build() {
             return new DefaultCharacterInformation(abilityScore,
-                    armorClass,
                     hitPoints != null ? hitPoints : new DefaultHitPoints(abilityScore),
                     experiencePoints);
         }
