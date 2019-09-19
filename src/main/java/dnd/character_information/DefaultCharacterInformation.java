@@ -2,9 +2,11 @@ package dnd.character_information;
 
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
 @Builder
+@Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DefaultCharacterInformation implements CharacterInformation {
     AbilityScore abilityScore;
@@ -13,18 +15,8 @@ public class DefaultCharacterInformation implements CharacterInformation {
     private int experiencePoints;
 
     @Override
-    public HitPoints getHitPoints() {
-        return hitPoints;
-    }
-
-    @Override
     public boolean isHit(int roll) {
         return roll >= armorClass;
-    }
-
-    @Override
-    public int getExperiencePoints() {
-        return experiencePoints;
     }
 
     @Override
