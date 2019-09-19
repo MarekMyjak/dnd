@@ -10,7 +10,6 @@ public class DefaultCharacterInformation implements CharacterInformation {
     AbilityScore abilityScore;
     int armorClass;
     HitPoints hitPoints;
-    int level;
     private int experiencePoints;
 
     @Override
@@ -30,16 +29,17 @@ public class DefaultCharacterInformation implements CharacterInformation {
 
     @Override
     public void increaseExperience(int amount) {
+        int level = getLevel();
         experiencePoints += amount;
         while ((experiencePoints / 1000.0) >= level) {
-            level += 1;
             hitPoints.increaseLevel(abilityScore);
+            level++;
         }
     }
 
     @Override
     public int getLevel() {
-        return level;
+        return (experiencePoints / 1000) + 1;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class DefaultCharacterInformation implements CharacterInformation {
 
     @Override
     public int getAttackRollModifier() {
-        return abilityScore.getModifiers(abilityScore.getStrength()) + Math.floorDiv(level, 2);
+        return abilityScore.getModifiers(abilityScore.getStrength()) + Math.floorDiv(getLevel(), 2);
     }
 
     @Override
@@ -64,14 +64,12 @@ public class DefaultCharacterInformation implements CharacterInformation {
         public DefaultCharacterInformationBuilder() {
             abilityScore = AbilityScore.builder().build();
             armorClass = DEFAULT_ARMOR_CLASS;
-            level = DEFAULT_LEVEL;
         }
 
         public DefaultCharacterInformation build() {
             return new DefaultCharacterInformation(abilityScore,
                     armorClass,
                     hitPoints != null ? hitPoints : new DefaultHitPoints(abilityScore),
-                    level,
                     experiencePoints);
         }
     }

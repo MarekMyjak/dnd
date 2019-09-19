@@ -31,7 +31,7 @@ class AttackRollModifierTest {
     void attackRollOnSecondLevelTest() {
 //        given
         CharacterInformation characterInformation = DefaultCharacterInformation.builder()
-                .level(2)
+                .experiencePoints(1000)
                 .build();
 //        then
         assertThat(characterInformation.getAttackRollModifier()).isEqualTo(1);
@@ -41,7 +41,7 @@ class AttackRollModifierTest {
     void attackRollOnHighLevelWithStrengthModifierTest() {
 //        given
         CharacterInformation characterInformation = DefaultCharacterInformation.builder()
-                .level(17)
+                .experiencePoints(16000)
                 .abilityScore(AbilityScore.builder()
                         .strength(16)
                         .build())
