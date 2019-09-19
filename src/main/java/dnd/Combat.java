@@ -14,7 +14,7 @@ class Combat {
     );
 
     static boolean attack(Character attacker, Character enemy, int roll) {
-        AttackType attackType = attacker.attack(enemy, roll);
+        AttackType attackType = attacker.attack(enemy.getCharacterInformation(), roll);
         if (AttackType.isHit(attackType)) {
             enemy.takeDamage(calculateDamage(attacker.getDamageModifier(), attackType));
             attacker.increaseExperience(EXPERIENCE_POINT_FOR_SUCCESSFUL_ATTACK);

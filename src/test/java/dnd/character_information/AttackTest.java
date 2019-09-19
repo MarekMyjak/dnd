@@ -14,7 +14,7 @@ class AttackTest {
     void successfulAttackWithMinimumRollTest() {
 //        given
         int roll = 10;
-        Character enemy = PlayableCharacter.builder().build();
+        CharacterInformation enemy = DefaultCharacterInformation.builder().build();
         Character character = PlayableCharacter.builder().build();
 //        when
 //        then
@@ -24,8 +24,7 @@ class AttackTest {
     @Test
     void successfulAttackWithHigherRollTest() {
 //        given
-        Character enemy = PlayableCharacter.builder()
-                .build();
+        CharacterInformation enemy = DefaultCharacterInformation.builder().build();
         Character character = PlayableCharacter.builder().build();
         int roll = 12;
 //        when
@@ -36,7 +35,7 @@ class AttackTest {
     @Test
     void successfulAttackWithNatural20Test() {
 //        given
-        Character enemy = PlayableCharacter.builder().build();
+        CharacterInformation enemy = DefaultCharacterInformation.builder().build();
         Character character = PlayableCharacter.builder().build();
         int roll = 20;
 //        when
@@ -47,10 +46,7 @@ class AttackTest {
     @Test
     void successfulAttackWithNatural20AndHighArmorTest() {
 //        given
-        Character enemy = PlayableCharacter.builder()
-                .characterInformation(
-                        DefaultCharacterInformation.builder().armorClass(30).build())
-                .build();
+        CharacterInformation enemy = DefaultCharacterInformation.builder().armorClass(30).build();
         Character character = PlayableCharacter.builder().build();
         int roll = 20;
 //        when
@@ -61,8 +57,7 @@ class AttackTest {
     @Test
     void missedAttackTest() {
 //        given
-        Character enemy = PlayableCharacter.builder()
-                .build();
+        CharacterInformation enemy = DefaultCharacterInformation.builder().build();
         Character character = PlayableCharacter.builder().build();
         int roll = 5;
 //        when

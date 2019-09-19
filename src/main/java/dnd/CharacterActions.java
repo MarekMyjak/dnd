@@ -10,4 +10,6 @@ public interface CharacterActions {
     int getAttackRollModifier();
 
     int getDamageModifier();
+
+    void increaseExperience(int amount);
 }

@@ -20,7 +20,7 @@ public class DefaultCharacterInformation implements CharacterInformation {
 
     @Override
     public boolean isHit(int roll) {
-        return false;
+        return roll >= armorClass;
     }
 
     @Override
