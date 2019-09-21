@@ -10,7 +10,7 @@ class CharacterDefaultHitPointsTest {
     void defaultHitPointsTest() {
 //        given
         int expectedDefaultHitPoints = 6;
-        CharacterInformation character = DefaultCharacter.builder().build();
+        Character character = DefaultCharacter.builder().build();
 //        then
         assertThat(character.getHitPoints().getActual()).isEqualTo(expectedDefaultHitPoints);
     }
@@ -19,7 +19,7 @@ class CharacterDefaultHitPointsTest {
     void hitPointsWithConstitutionModifierTest() {
 //        given
         int expectedHitPoints = 7;
-        CharacterInformation character = DefaultCharacter.builder()
+        Character character = DefaultCharacter.builder()
                 .abilityScore(AbilityScore.builder()
                         .constitution(14)
                         .build())
@@ -32,7 +32,7 @@ class CharacterDefaultHitPointsTest {
     void minimalHitPointsTest() {
 //        given
         int expectedHitPoints = 6;
-        CharacterInformation character = DefaultCharacter.builder()
+        Character character = DefaultCharacter.builder()
                 .abilityScore(AbilityScore.builder()
                         .constitution(1)
                         .build())

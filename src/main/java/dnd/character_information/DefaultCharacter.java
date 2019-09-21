@@ -1,8 +1,6 @@
 package dnd.character_information;
 
-import dnd.AttackType;
 import dnd.Attacker;
-import dnd.Character;
 import dnd.Target;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -18,16 +16,6 @@ public class DefaultCharacter implements Character, Attacker, Target {
     HitPoints hitPoints;
     ExperiencePoints experiencePoints;
     Named backgroundInformation;
-
-    public AttackType attack(CharacterInformation enemy, int roll) {
-        if (roll == 20) {
-            return AttackType.CRIT;
-        }
-        if (enemy.getArmorClass() <= roll + getAttackRollModifier()) {
-            return AttackType.HIT;
-        }
-        return AttackType.MISS;
-    }
 
     @Override
     public void increaseExperience(int amount) {

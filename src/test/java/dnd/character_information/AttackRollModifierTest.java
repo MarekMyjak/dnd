@@ -10,22 +10,22 @@ class AttackRollModifierTest {
     @Test
     void defaultAttackRollTest() {
 //        given
-        CharacterInformation characterInformation = DefaultCharacter.builder()
+        Character character = DefaultCharacter.builder()
                 .build();
 //        then
-        assertThat(characterInformation.getAttackRollModifier()).isEqualTo(0);
+        assertThat(character.getAttackRollModifier()).isEqualTo(0);
     }
 
     @Test
     void attackRollWithStrengthModifiersTest() {
 //        given
-        CharacterInformation characterInformation = DefaultCharacter.builder()
+        Character character = DefaultCharacter.builder()
                 .abilityScore(AbilityScore.builder()
                         .strength(14)
                         .build())
                 .build();
 //        then
-        assertThat(characterInformation.getAttackRollModifier()).isEqualTo(2);
+        assertThat(character.getAttackRollModifier()).isEqualTo(2);
     }
 
     @Test
@@ -33,11 +33,11 @@ class AttackRollModifierTest {
 //        given
         ExperiencePoints experiencePoints = Mockito.mock(ExperiencePoints.class);
         Mockito.when(experiencePoints.getLevel()).thenReturn(2);
-        CharacterInformation characterInformation = DefaultCharacter.builder()
+        Character character = DefaultCharacter.builder()
                 .experiencePoints(experiencePoints)
                 .build();
 //        then
-        assertThat(characterInformation.getAttackRollModifier()).isEqualTo(1);
+        assertThat(character.getAttackRollModifier()).isEqualTo(1);
     }
 
     @Test
@@ -45,13 +45,13 @@ class AttackRollModifierTest {
 //        given
         ExperiencePoints experiencePoints = Mockito.mock(ExperiencePoints.class);
         Mockito.when(experiencePoints.getLevel()).thenReturn(17);
-        CharacterInformation characterInformation = DefaultCharacter.builder()
+        Character character = DefaultCharacter.builder()
                 .experiencePoints(experiencePoints)
                 .abilityScore(AbilityScore.builder()
                         .strength(16)
                         .build())
                 .build();
 //        then
-        assertThat(characterInformation.getAttackRollModifier()).isEqualTo(11);
+        assertThat(character.getAttackRollModifier()).isEqualTo(11);
     }
 }

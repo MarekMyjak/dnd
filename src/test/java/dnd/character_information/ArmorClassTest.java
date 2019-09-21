@@ -10,22 +10,22 @@ class ArmorClassTest {
     void defaultArmorClassTest() {
 //        given
         int expectedDefaultArmorClass = 10;
-        CharacterInformation characterInformation = DefaultCharacter.builder().build();
+        Character character = DefaultCharacter.builder().build();
 //        then
-        assertThat(characterInformation.getArmorClass()).isEqualTo(expectedDefaultArmorClass);
+        assertThat(character.getArmorClass()).isEqualTo(expectedDefaultArmorClass);
     }
 
     @Test
     void armorClassWithDexterityTest() {
 //        given
         int expectedDefaultArmorClass = 12;
-        CharacterInformation characterInformation = DefaultCharacter
+        Character character = DefaultCharacter
                 .builder()
                 .abilityScore(AbilityScore.builder()
                         .dexterity(15)
                         .build())
                 .build();
 //        then
-        assertThat(characterInformation.getArmorClass()).isEqualTo(expectedDefaultArmorClass);
+        assertThat(character.getArmorClass()).isEqualTo(expectedDefaultArmorClass);
     }
 }

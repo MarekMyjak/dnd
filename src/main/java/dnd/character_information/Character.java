@@ -1,6 +1,6 @@
 package dnd.character_information;
 
-public interface CharacterInformation {
+interface Character {
 
     HitPoints getHitPoints();
 
