@@ -9,31 +9,24 @@ class CharacterDeadTest {
     @Test
     void characterIsDeadOnZeroHitPointsTest() {
 //        given
-        CharacterInformation characterInformation =
-                DefaultCharacter.builder()
-                        .hitPoints(new DefaultHitPoints(0, 10))
-                        .build();
+        HitPoints hitPoints = new DefaultHitPoints(0, 10);
 //        then
-        assertThat(characterInformation.isDead()).isEqualTo(true);
+        assertThat(hitPoints.isDead()).isEqualTo(true);
     }
 
     @Test
     void characterIsDeadOnNegativeHitPointsTest() {
 //        given
-        CharacterInformation characterInformation =
-                DefaultCharacter.builder()
-                        .hitPoints(new DefaultHitPoints(-7, 10))
-                        .build();
+        HitPoints hitPoints = new DefaultHitPoints(-7, 10);
 //        then
-        assertThat(characterInformation.isDead()).isEqualTo(true);
+        assertThat(hitPoints.isDead()).isEqualTo(true);
     }
 
     @Test
     void characterIsNotDeadTest() {
 //        given
-        CharacterInformation characterInformation =
-                DefaultCharacter.builder().build();
+        HitPoints hitPoints = new DefaultHitPoints(10, 10);
 //        then
-        assertThat(characterInformation.isDead()).isEqualTo(false);
+        assertThat(hitPoints.isDead()).isEqualTo(false);
     }
 }

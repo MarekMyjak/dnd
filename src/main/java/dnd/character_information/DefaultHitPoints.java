@@ -27,13 +27,21 @@ public class DefaultHitPoints implements HitPoints {
     @Override
     public void change(int amount) {
         actual += amount;
+        if (actual < 0) {
+            actual = 0;
+        }
     }
 
     @Override
-    public void increaseLevel(AbilityScore abilityScore) {
+    public void increaseHitPointsPerLevel(AbilityScore abilityScore) {
         int amount = 5 + getConstitutionModifiersWithMinimumValue(abilityScore);
         actual += amount;
         maximum += amount;
+    }
+
+    @Override
+    public boolean isDead() {
+        return actual <= 0;
     }
 
     private static int getConstitutionModifiersWithMinimumValue(AbilityScore abilityScore) {

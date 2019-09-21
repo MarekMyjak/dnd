@@ -32,7 +32,7 @@ public class DefaultCharacter implements Character {
         int level = getLevel();
         experiencePoints.increaseExperience(amount);
         while (experiencePoints.getLevel() > level) {
-            hitPoints.increaseLevel(abilityScore);
+            hitPoints.increaseHitPointsPerLevel(abilityScore);
             level++;
         }
     }
@@ -50,11 +50,6 @@ public class DefaultCharacter implements Character {
     @Override
     public int getAttackRollModifier() {
         return abilityScore.getModifiers(abilityScore.getStrength()) + Math.floorDiv(getLevel(), 2);
-    }
-
-    @Override
-    public boolean isDead() {
-        return hitPoints.getActual() <= 0;
     }
 
     @Override
