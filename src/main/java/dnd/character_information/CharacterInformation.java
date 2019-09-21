@@ -4,8 +4,6 @@ public interface CharacterInformation {
 
     HitPoints getHitPoints();
 
-    int getExperiencePoints();
-
     void increaseExperience(int i);
 
     int getLevel();
@@ -15,6 +13,4 @@ public interface CharacterInformation {
     int getAttackRollModifier();
 
     boolean isDead();
-
-    int getDamageModifier();
 }

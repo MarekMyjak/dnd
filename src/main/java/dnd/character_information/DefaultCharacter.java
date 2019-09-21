@@ -11,10 +11,10 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DefaultCharacter implements Character {
-    private static final int DEFAULT_ARMOR_CLASS = 10;
+    static final int DEFAULT_ARMOR_CLASS = 10;
     AbilityScore abilityScore;
     HitPoints hitPoints;
-    private int experiencePoints;
+    ExperiencePoints experiencePoints;
     Named backgroundInformation;
 
     public AttackType attack(CharacterInformation enemy, int roll) {
@@ -30,8 +30,8 @@ public class DefaultCharacter implements Character {
     @Override
     public void increaseExperience(int amount) {
         int level = getLevel();
-        experiencePoints += amount;
-        while ((experiencePoints / 1000.0) >= level) {
+        experiencePoints.increaseExperience(amount);
+        while (experiencePoints.getLevel() > level) {
             hitPoints.increaseLevel(abilityScore);
             level++;
         }
@@ -39,7 +39,7 @@ public class DefaultCharacter implements Character {
 
     @Override
     public int getLevel() {
-        return (experiencePoints / 1000) + 1;
+        return experiencePoints.getLevel();
     }
 
     @Override
@@ -73,6 +73,7 @@ public class DefaultCharacter implements Character {
 
         public DefaultCharacterBuilder() {
             abilityScore = AbilityScore.builder().build();
+            experiencePoints = DefaultExperiencePoints.builder().build();
         }
 
         public DefaultCharacter build() {

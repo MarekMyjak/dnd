@@ -9,22 +9,22 @@ class IncreaseExperienceTest {
     @Test
     void increaseExperienceTest() {
 //        given
-        CharacterInformation characterInformation = DefaultCharacter.builder().build();
+        ExperiencePoints experiencePoints = DefaultExperiencePoints.builder().build();
 //        when
-        characterInformation.increaseExperience(10);
+        experiencePoints.increaseExperience(10);
 //        then
-        assertThat(characterInformation.getExperiencePoints()).isEqualTo(10);
-        assertThat(characterInformation.getLevel()).isEqualTo(1);
+        assertThat(experiencePoints.getExperiencePoints()).isEqualTo(10);
+        assertThat(experiencePoints.getLevel()).isEqualTo(1);
     }
 
     @Test
     void increaseExperienceShouldIncreaseLevelTest() {
 //        given
-        CharacterInformation characterInformation = DefaultCharacter.builder().build();
+        ExperiencePoints experiencePoints = DefaultExperiencePoints.builder().build();
 //        when
-        characterInformation.increaseExperience(1000);
+        experiencePoints.increaseExperience(1000);
 //        then
-        assertThat(characterInformation.getExperiencePoints()).isEqualTo(1000);
-        assertThat(characterInformation.getLevel()).isEqualTo(2);
+        assertThat(experiencePoints.getExperiencePoints()).isEqualTo(1000);
+        assertThat(experiencePoints.getLevel()).isEqualTo(2);
     }
 }
