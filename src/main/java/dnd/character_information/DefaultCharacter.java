@@ -60,7 +60,7 @@ public class DefaultCharacter implements Character {
 
     @Override
     public void takeDamage(int amount) {
-        getHitPoints().change(-amount);
+        getHitPoints().takeDamage(amount);
     }
 
 

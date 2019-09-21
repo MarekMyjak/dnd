@@ -5,7 +5,7 @@ public interface HitPoints {
 
     int getMaximum();
 
-    void change(int i);
+    void takeDamage(int i);
 
     void increaseHitPointsPerLevel(AbilityScore abilityScore);
 

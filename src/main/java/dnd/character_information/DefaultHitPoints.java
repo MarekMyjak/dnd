@@ -1,11 +1,9 @@
 package dnd.character_information;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 public class DefaultHitPoints implements HitPoints {
@@ -19,14 +17,22 @@ public class DefaultHitPoints implements HitPoints {
         actual = maximum;
     }
 
+    DefaultHitPoints(int amount) {
+        if (amount < 0) {
+            amount = 0;
+        }
+        maximum = amount;
+        actual = amount;
+    }
+
     @Override
     public int getMaximum() {
         return maximum;
     }
 
     @Override
-    public void change(int amount) {
-        actual += amount;
+    public void takeDamage(int amount) {
+        actual -= amount;
         if (actual < 0) {
             actual = 0;
         }
