@@ -15,4 +15,6 @@ public interface CharacterInformation {
     int getAttackRollModifier();
 
     boolean isDead();
+
+    int getDamageModifier();
 }

@@ -18,7 +18,7 @@ class DealDamageInCombatTest {
 
     @Test
     void dealDamageOnHitTest() {
-        Mockito.when(attacker.attack(enemy.getCharacterInformation(), 16)).thenReturn(AttackType.HIT);
+        Mockito.when(attacker.attack(enemy, 16)).thenReturn(AttackType.HIT);
 //        when
         boolean attack = Combat.attack(attacker, enemy, 16);
 //        then
@@ -28,7 +28,7 @@ class DealDamageInCombatTest {
 
     @Test
     void dealDoubleDamageOnCritTest() {
-        Mockito.when(attacker.attack(enemy.getCharacterInformation(), 16)).thenReturn(AttackType.CRIT);
+        Mockito.when(attacker.attack(enemy, 16)).thenReturn(AttackType.CRIT);
 //        when
         boolean attack = Combat.attack(attacker, enemy, 16);
 //        then

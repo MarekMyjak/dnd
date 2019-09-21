@@ -1,5 +1,7 @@
 package dnd.character_information;
 
+import dnd.AttackType;
+import dnd.Character;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,11 +10,22 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DefaultCharacterInformation implements CharacterInformation {
+public class DefaultCharacter implements Character {
     private static final int DEFAULT_ARMOR_CLASS = 10;
     AbilityScore abilityScore;
     HitPoints hitPoints;
     private int experiencePoints;
+    Named backgroundInformation;
+
+    public AttackType attack(CharacterInformation enemy, int roll) {
+        if (roll == 20) {
+            return AttackType.CRIT;
+        }
+        if (enemy.getArmorClass() <= roll + getAttackRollModifier()) {
+            return AttackType.HIT;
+        }
+        return AttackType.MISS;
+    }
 
     @Override
     public void increaseExperience(int amount) {
@@ -44,16 +57,29 @@ public class DefaultCharacterInformation implements CharacterInformation {
         return hitPoints.getActual() <= 0;
     }
 
-    public static class DefaultCharacterInformationBuilder {
+    @Override
+    public int getDamageModifier() {
+        return abilityScore.getModifiers(abilityScore.getStrength());
+    }
 
-        public DefaultCharacterInformationBuilder() {
+
+    @Override
+    public void takeDamage(int amount) {
+        getHitPoints().change(-amount);
+    }
+
+
+    public static class DefaultCharacterBuilder {
+
+        public DefaultCharacterBuilder() {
             abilityScore = AbilityScore.builder().build();
         }
 
-        public DefaultCharacterInformation build() {
-            return new DefaultCharacterInformation(abilityScore,
+        public DefaultCharacter build() {
+            return new DefaultCharacter(abilityScore,
                     hitPoints != null ? hitPoints : new DefaultHitPoints(abilityScore),
-                    experiencePoints);
+                    experiencePoints,
+                    backgroundInformation);
         }
     }
 }

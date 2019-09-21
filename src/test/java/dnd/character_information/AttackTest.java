@@ -2,7 +2,6 @@ package dnd.character_information;
 
 import dnd.AttackType;
 import dnd.Character;
-import dnd.PlayableCharacter;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -15,8 +14,8 @@ class AttackTest {
     void successfulAttackWithMinimumRollTest() {
 //        given
         int roll = 10;
-        CharacterInformation enemy = DefaultCharacterInformation.builder().build();
-        Character character = PlayableCharacter.builder().build();
+        CharacterInformation enemy = DefaultCharacter.builder().build();
+        Character character = DefaultCharacter.builder().build();
 //        when
 //        then
         Assertions.assertThat(character.attack(enemy, roll)).isEqualTo(AttackType.HIT);
@@ -25,8 +24,8 @@ class AttackTest {
     @Test
     void successfulAttackWithHigherRollTest() {
 //        given
-        CharacterInformation enemy = DefaultCharacterInformation.builder().build();
-        Character character = PlayableCharacter.builder().build();
+        CharacterInformation enemy = DefaultCharacter.builder().build();
+        Character character = DefaultCharacter.builder().build();
         int roll = 12;
 //        when
 //        then
@@ -36,8 +35,8 @@ class AttackTest {
     @Test
     void successfulAttackWithNatural20Test() {
 //        given
-        CharacterInformation enemy = DefaultCharacterInformation.builder().build();
-        Character character = PlayableCharacter.builder().build();
+        CharacterInformation enemy = DefaultCharacter.builder().build();
+        Character character = DefaultCharacter.builder().build();
         int roll = 20;
 //        when
 //        then
@@ -49,7 +48,7 @@ class AttackTest {
 //        given
         CharacterInformation enemy = Mockito.mock(CharacterInformation.class);
         Mockito.when(enemy.getArmorClass()).thenReturn(30);
-        Character character = PlayableCharacter.builder().build();
+        Character character = DefaultCharacter.builder().build();
         int roll = 20;
 //        when
 //        then
@@ -59,8 +58,8 @@ class AttackTest {
     @Test
     void missedAttackTest() {
 //        given
-        CharacterInformation enemy = DefaultCharacterInformation.builder().build();
-        Character character = PlayableCharacter.builder().build();
+        CharacterInformation enemy = DefaultCharacter.builder().build();
+        Character character = DefaultCharacter.builder().build();
         int roll = 5;
 //        when
 //        then

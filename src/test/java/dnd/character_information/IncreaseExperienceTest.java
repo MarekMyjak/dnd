@@ -9,7 +9,7 @@ class IncreaseExperienceTest {
     @Test
     void increaseExperienceTest() {
 //        given
-        CharacterInformation characterInformation = DefaultCharacterInformation.builder().build();
+        CharacterInformation characterInformation = DefaultCharacter.builder().build();
 //        when
         characterInformation.increaseExperience(10);
 //        then
@@ -20,7 +20,7 @@ class IncreaseExperienceTest {
     @Test
     void increaseExperienceShouldIncreaseLevelTest() {
 //        given
-        CharacterInformation characterInformation = DefaultCharacterInformation.builder().build();
+        CharacterInformation characterInformation = DefaultCharacter.builder().build();
 //        when
         characterInformation.increaseExperience(1000);
 //        then

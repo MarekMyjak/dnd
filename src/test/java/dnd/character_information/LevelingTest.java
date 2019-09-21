@@ -8,13 +8,13 @@ class LevelingTest {
 
     @Test
     void defaultLevelTest() {
-        assertThat(DefaultCharacterInformation.builder().build().getLevel()).isEqualTo(1);
+        assertThat(DefaultCharacter.builder().build().getLevel()).isEqualTo(1);
     }
 
     @Test
     void levelingOfDefaultCharacterTest() {
 //        given
-        CharacterInformation character = DefaultCharacterInformation.builder().build();
+        CharacterInformation character = DefaultCharacter.builder().build();
 //        when
         character.increaseExperience(1000);
 //        then
@@ -25,7 +25,7 @@ class LevelingTest {
     @Test
     void levelingOfDefaultCharacterTwoLevelsTest() {
 //        given
-        CharacterInformation character = DefaultCharacterInformation.builder().build();
+        CharacterInformation character = DefaultCharacter.builder().build();
 //        when
         character.increaseExperience(2000);
 //        then
@@ -37,7 +37,7 @@ class LevelingTest {
     @Test
     void multipleLevelingOfDefaultCharacterTest() {
 //        given
-        CharacterInformation character = DefaultCharacterInformation.builder().build();
+        CharacterInformation character = DefaultCharacter.builder().build();
 //        when
         character.increaseExperience(15000);
 //        then
@@ -48,7 +48,7 @@ class LevelingTest {
     @Test
     void levelingWithConstitutionTest() {
 //        given
-        CharacterInformation character = DefaultCharacterInformation.builder()
+        CharacterInformation character = DefaultCharacter.builder()
                 .abilityScore(AbilityScore.builder()
                         .constitution(16)
                         .build())
@@ -64,7 +64,7 @@ class LevelingTest {
     @Test
     void levelingWithLowConstitutionTest() {
 //        given
-        CharacterInformation character = DefaultCharacterInformation.builder()
+        CharacterInformation character = DefaultCharacter.builder()
                 .abilityScore(AbilityScore.builder()
                         .constitution(1)
                         .build())
@@ -79,7 +79,7 @@ class LevelingTest {
     @Test
     void levelingWithStrengthTest() {
 //        given
-        CharacterInformation character = DefaultCharacterInformation.builder()
+        CharacterInformation character = DefaultCharacter.builder()
                 .abilityScore(AbilityScore.builder()
                         .strength(16)
                         .build())
