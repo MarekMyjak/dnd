@@ -1,5 +1,6 @@
 package dnd;
 
+import dnd.character_information.DefaultCharacter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -12,13 +13,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 class DealDamageInCombatTest {
 
     @Mock
-    Character attacker;
-    @Mock
-    Character enemy;
+    Target enemy;
 
     @Test
     void dealDamageOnHitTest() {
-        Mockito.when(attacker.attack(enemy, 16)).thenReturn(AttackType.HIT);
+        Attacker attacker = DefaultCharacter.builder().build();
+        Mockito.when(enemy.getArmorClass()).thenReturn(10);
 //        when
         boolean attack = Combat.attack(attacker, enemy, 16);
 //        then
@@ -28,9 +28,10 @@ class DealDamageInCombatTest {
 
     @Test
     void dealDoubleDamageOnCritTest() {
-        Mockito.when(attacker.attack(enemy, 16)).thenReturn(AttackType.CRIT);
+        Attacker attacker = DefaultCharacter.builder().build();
+        Mockito.when(enemy.getArmorClass()).thenReturn(10);
 //        when
-        boolean attack = Combat.attack(attacker, enemy, 16);
+        boolean attack = Combat.attack(attacker, enemy, 20);
 //        then
         assertThat(attack).isEqualTo(true);
         Mockito.verify(enemy, Mockito.times(1)).takeDamage(2);

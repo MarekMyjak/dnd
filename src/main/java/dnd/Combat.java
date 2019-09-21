@@ -3,6 +3,8 @@ package dnd;
 import java.util.Map;
 import java.util.function.Function;
 
+import static dnd.AttackType.getAttackType;
+
 class Combat {
     private static final int DAMAGE_AMOUNT = 1;
     private static final int CRITICAL_DAMAGE_MULTIPLIER = 2;
@@ -13,8 +15,8 @@ class Combat {
             AttackType.CRIT, x -> CRITICAL_DAMAGE_MULTIPLIER * x
     );
 
-    static boolean attack(Character attacker, Character enemy, int roll) {
-        AttackType attackType = attacker.attack(enemy, roll);
+    static boolean attack(Attacker attacker, Target enemy, int roll) {
+        AttackType attackType = getAttackType(roll, attacker.getAttackRollModifier(), enemy.getArmorClass());
         if (AttackType.isHit(attackType)) {
             enemy.takeDamage(calculateDamage(attacker.getDamageModifier(), attackType));
             attacker.increaseExperience(EXPERIENCE_POINT_FOR_SUCCESSFUL_ATTACK);

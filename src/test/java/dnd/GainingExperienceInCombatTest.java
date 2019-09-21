@@ -10,15 +10,15 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class GainingExperienceInCombatTest {
 
     @Mock
-    Character character;
+    Attacker character;
 
     @Mock
-    Character enemy;
+    Target enemy;
 
     @Test
     void gainingExperienceInCombatTest() {
 //        given
-        Mockito.when(character.attack(Mockito.any(), Mockito.anyInt())).thenReturn(AttackType.HIT);
+        Mockito.when(character.getAttackRollModifier()).thenReturn(10);
 //        when
         Combat.attack(character, enemy, 10);
 //        then
@@ -28,7 +28,7 @@ class GainingExperienceInCombatTest {
     @Test
     void gainingExperienceTwoTimesTest() {
 //        given
-        Mockito.when(character.attack(Mockito.any(), Mockito.anyInt())).thenReturn(AttackType.HIT);
+        Mockito.when(character.getAttackRollModifier()).thenReturn(10);
 //        when
         Combat.attack(character, enemy, 10);
         Combat.attack(character, enemy, 10);
@@ -39,9 +39,10 @@ class GainingExperienceInCombatTest {
     @Test
     void notGainingExperienceOnMiss() {
 //        given
-        Mockito.when(character.attack(Mockito.any(), Mockito.anyInt())).thenReturn(AttackType.MISS);
+        Mockito.when(character.getAttackRollModifier()).thenReturn(0);
+        Mockito.when(enemy.getArmorClass()).thenReturn(20);
 //        when
-        Combat.attack(character, enemy, 10);
+        Combat.attack(character, enemy, 0);
 //        then
         Mockito.verify(character, Mockito.times(0)).increaseExperience(Mockito.anyInt());
     }

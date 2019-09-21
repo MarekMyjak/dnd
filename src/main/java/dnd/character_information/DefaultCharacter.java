@@ -1,7 +1,9 @@
 package dnd.character_information;
 
 import dnd.AttackType;
+import dnd.Attacker;
 import dnd.Character;
+import dnd.Target;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DefaultCharacter implements Character {
+public class DefaultCharacter implements Character, Attacker, Target {
     static final int DEFAULT_ARMOR_CLASS = 10;
     AbilityScore abilityScore;
     HitPoints hitPoints;
@@ -62,7 +64,6 @@ public class DefaultCharacter implements Character {
     public void takeDamage(int amount) {
         getHitPoints().takeDamage(amount);
     }
-
 
     public static class DefaultCharacterBuilder {
 
