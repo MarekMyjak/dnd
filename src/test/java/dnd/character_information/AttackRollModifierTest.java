@@ -20,7 +20,7 @@ class AttackRollModifierTest {
     void attackRollWithStrengthModifiersTest() {
 //        given
         Character character = DefaultCharacter.builder()
-                .abilityScore(AbilityScore.builder()
+                .abilityScores(AbilityScores.builder()
                         .strength(14)
                         .build())
                 .build();
@@ -47,7 +47,7 @@ class AttackRollModifierTest {
         Mockito.when(experiencePoints.getLevel()).thenReturn(17);
         Character character = DefaultCharacter.builder()
                 .experiencePoints(experiencePoints)
-                .abilityScore(AbilityScore.builder()
+                .abilityScores(AbilityScores.builder()
                         .strength(16)
                         .build())
                 .build();

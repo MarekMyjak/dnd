@@ -7,7 +7,7 @@ public interface HitPoints {
 
     void takeDamage(int i);
 
-    void increaseHitPointsPerLevel(AbilityScore abilityScore);
+    void increaseHitPointsPerLevel();
 
     boolean isDead();
 }

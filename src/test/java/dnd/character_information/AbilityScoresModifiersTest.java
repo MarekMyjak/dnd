@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class AbilityScoreModifiersTest {
+class AbilityScoresModifiersTest {
 
     private static Stream<Arguments> provideModifierFromScore() {
         return Stream.of(
@@ -38,8 +38,8 @@ class AbilityScoreModifiersTest {
     @ParameterizedTest
     @MethodSource("provideModifierFromScore")
     void modifierTableTest(int score, int modifier) {
-        AbilityScore abilityScore = AbilityScore.builder()
+        AbilityScores abilityScores = AbilityScores.builder()
                 .build();
-        assertThat(abilityScore.getModifiers(score)).isEqualTo(modifier);
+        assertThat(abilityScores.getModifiers(score)).isEqualTo(modifier);
     }
 }

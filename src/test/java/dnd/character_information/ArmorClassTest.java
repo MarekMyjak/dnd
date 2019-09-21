@@ -21,7 +21,7 @@ class ArmorClassTest {
         int expectedDefaultArmorClass = 12;
         Character character = DefaultCharacter
                 .builder()
-                .abilityScore(AbilityScore.builder()
+                .abilityScores(AbilityScores.builder()
                         .dexterity(15)
                         .build())
                 .build();

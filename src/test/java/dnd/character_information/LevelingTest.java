@@ -49,9 +49,7 @@ class LevelingTest {
     void levelingWithConstitutionTest() {
 //        given
         Character character = DefaultCharacter.builder()
-                .abilityScore(AbilityScore.builder()
-                        .constitution(16)
-                        .build())
+                .hitPoints(new DefaultHitPoints(DefaultConstitution.builder().value(16).build()))
                 .build();
         assertThat(character.getHitPoints().getMaximum()).isEqualTo(8);
 //        when
@@ -65,9 +63,7 @@ class LevelingTest {
     void levelingWithLowConstitutionTest() {
 //        given
         Character character = DefaultCharacter.builder()
-                .abilityScore(AbilityScore.builder()
-                        .constitution(1)
-                        .build())
+                .hitPoints(new DefaultHitPoints(DefaultConstitution.builder().value(1).build()))
                 .build();
 //        when
         character.increaseExperience(1000);
@@ -80,7 +76,7 @@ class LevelingTest {
     void levelingWithStrengthTest() {
 //        given
         Character character = DefaultCharacter.builder()
-                .abilityScore(AbilityScore.builder()
+                .abilityScores(AbilityScores.builder()
                         .strength(16)
                         .build())
                 .build();

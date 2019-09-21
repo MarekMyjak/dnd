@@ -23,14 +23,12 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
 @Getter
-class AbilityScore {
+class AbilityScores {
     static final int DEFAULT_ABILITY_SCORE = 10;
     @Builder.Default
     int strength = DEFAULT_ABILITY_SCORE;
     @Builder.Default
     int dexterity = DEFAULT_ABILITY_SCORE;
-    @Builder.Default
-    int constitution = DEFAULT_ABILITY_SCORE;
     @Builder.Default
     int wisdom = DEFAULT_ABILITY_SCORE;
     @Builder.Default
@@ -38,7 +36,7 @@ class AbilityScore {
     @Builder.Default
     int charisma = DEFAULT_ABILITY_SCORE;
 
-    int getModifiers(int score) {
+    static int getModifiers(int score) {
         return Math.floorDiv(score - 10, 2);
     }
 }

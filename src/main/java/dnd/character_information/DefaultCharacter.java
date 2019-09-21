@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DefaultCharacter implements Character, Attacker, Target {
     static final int DEFAULT_ARMOR_CLASS = 10;
-    AbilityScore abilityScore;
+    AbilityScores abilityScores;
     HitPoints hitPoints;
     ExperiencePoints experiencePoints;
     Named backgroundInformation;
@@ -22,7 +22,7 @@ public class DefaultCharacter implements Character, Attacker, Target {
         int level = getLevel();
         experiencePoints.increaseExperience(amount);
         while (experiencePoints.getLevel() > level) {
-            hitPoints.increaseHitPointsPerLevel(abilityScore);
+            hitPoints.increaseHitPointsPerLevel();
             level++;
         }
     }
@@ -34,17 +34,17 @@ public class DefaultCharacter implements Character, Attacker, Target {
 
     @Override
     public int getArmorClass() {
-        return DEFAULT_ARMOR_CLASS + abilityScore.getModifiers(abilityScore.getDexterity());
+        return DEFAULT_ARMOR_CLASS + AbilityScores.getModifiers(abilityScores.getDexterity());
     }
 
     @Override
     public int getAttackRollModifier() {
-        return abilityScore.getModifiers(abilityScore.getStrength()) + Math.floorDiv(getLevel(), 2);
+        return AbilityScores.getModifiers(abilityScores.getStrength()) + Math.floorDiv(getLevel(), 2);
     }
 
     @Override
     public int getDamageModifier() {
-        return abilityScore.getModifiers(abilityScore.getStrength());
+        return AbilityScores.getModifiers(abilityScores.getStrength());
     }
 
 
@@ -56,13 +56,13 @@ public class DefaultCharacter implements Character, Attacker, Target {
     public static class DefaultCharacterBuilder {
 
         public DefaultCharacterBuilder() {
-            abilityScore = AbilityScore.builder().build();
+            abilityScores = AbilityScores.builder().build();
             experiencePoints = DefaultExperiencePoints.builder().build();
         }
 
         public DefaultCharacter build() {
-            return new DefaultCharacter(abilityScore,
-                    hitPoints != null ? hitPoints : new DefaultHitPoints(abilityScore),
+            return new DefaultCharacter(abilityScores,
+                    hitPoints != null ? hitPoints : new DefaultHitPoints(DefaultConstitution.builder().build()),
                     experiencePoints,
                     backgroundInformation);
         }
