@@ -1,5 +1,5 @@
 package dnd.character_information;
 
-interface Constitution {
+public interface Constitution {
     int getHitPointsModifiers();
 }

@@ -6,13 +6,15 @@ import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DefaultHitPoints implements HitPoints {
-    private static final int DEFAULT_HIT_POINTS = 5;
+    private static final int DEFAULT_HIT_POINTS_PER_LEVEL = 5;
     @Getter
     int actual;
+    @Getter(value = AccessLevel.PROTECTED)
     Constitution constitution;
+    @Getter(value = AccessLevel.PROTECTED)
     final ExperiencePoints experiencePoints;
 
-    DefaultHitPoints(Constitution constitution, ExperiencePoints experiencePoints) {
+    public DefaultHitPoints(Constitution constitution, ExperiencePoints experiencePoints) {
         this.experiencePoints = experiencePoints;
         this.constitution = constitution;
         actual = getMaximum();
@@ -20,8 +22,8 @@ public class DefaultHitPoints implements HitPoints {
 
     @Override
     public int getMaximum() {
-        return DEFAULT_HIT_POINTS + constitution.getHitPointsModifiers()
-                + ((experiencePoints.getLevel() - 1) * (5 + constitution.getHitPointsModifiers()));
+        return (DEFAULT_HIT_POINTS_PER_LEVEL + constitution.getHitPointsModifiers()) *
+                experiencePoints.getLevel();
     }
 
     @Override

@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Builder
 @Getter
-class DefaultExperiencePoints implements ExperiencePoints {
+public class DefaultExperiencePoints implements ExperiencePoints {
     int experiencePoints;
 
     @Override

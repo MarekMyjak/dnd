@@ -1,6 +1,6 @@
 package dnd.character_information;
 
-interface ExperiencePoints {
+public interface ExperiencePoints {
     void increaseExperience(int amount);
 
     int getExperiencePoints();

@@ -3,7 +3,7 @@ package dnd.character_information;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.BDDAssertions.then;
 
 class HitPointsTest {
 
@@ -13,7 +13,7 @@ class HitPointsTest {
         int expectedDefaultHitPoints = 6;
         HitPoints hitPoints = DefaultCharacter.builder().build().getHitPoints();
 //        then
-        assertThat(hitPoints.getActual()).isEqualTo(expectedDefaultHitPoints);
+        then(hitPoints.getActual()).isEqualTo(expectedDefaultHitPoints);
     }
 
     @Test
@@ -25,7 +25,7 @@ class HitPointsTest {
                 .build()
                 .getHitPoints();
 //        then
-        assertThat(hitPoints.getActual()).isEqualTo(expectedHitPoints);
+        then(hitPoints.getActual()).isEqualTo(expectedHitPoints);
     }
 
     @Test
@@ -37,7 +37,7 @@ class HitPointsTest {
                 .build()
                 .getHitPoints();
 //        then
-        assertThat(hitPoints.getActual()).isEqualTo(expectedHitPoints);
+        then(hitPoints.getActual()).isEqualTo(expectedHitPoints);
     }
 
     @Test
@@ -48,6 +48,6 @@ class HitPointsTest {
         Mockito.when(experiencePoints.getLevel()).thenReturn(10);
         HitPoints hitPoints = new DefaultHitPoints(DefaultConstitution.builder().build(), experiencePoints);
 //        then
-        assertThat(hitPoints.getActual()).isEqualTo(expectedHitPoints);
+        then(hitPoints.getActual()).isEqualTo(expectedHitPoints);
     }
 }

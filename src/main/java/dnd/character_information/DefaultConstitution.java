@@ -5,7 +5,7 @@ import lombok.Builder;
 import static dnd.character_information.AbilityScores.DEFAULT_ABILITY_SCORE;
 
 @Builder
-class DefaultConstitution implements Constitution {
+public class DefaultConstitution implements Constitution {
     private static final int MINIMUM_HIT_POINTS_FROM_CONSTITUTION = 1;
 
     @Builder.Default
