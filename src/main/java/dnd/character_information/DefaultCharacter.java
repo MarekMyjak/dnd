@@ -19,11 +19,10 @@ public class DefaultCharacter implements Character, Attacker, Target {
 
     @Override
     public void increaseExperience(int amount) {
-        int level = getLevel();
+        int previousLevel = getLevel();
         experiencePoints.increaseExperience(amount);
-        while (experiencePoints.getLevel() > level) {
+        for (int i = previousLevel; i < experiencePoints.getLevel(); i++){
             hitPoints.increaseHitPointsPerLevel();
-            level++;
         }
     }
 
@@ -53,18 +52,18 @@ public class DefaultCharacter implements Character, Attacker, Target {
         getHitPoints().takeDamage(amount);
     }
 
-    public static class DefaultCharacterBuilder {
+public static class DefaultCharacterBuilder {
 
-        public DefaultCharacterBuilder() {
-            abilityScores = AbilityScores.builder().build();
-            experiencePoints = DefaultExperiencePoints.builder().build();
-        }
-
-        public DefaultCharacter build() {
-            return new DefaultCharacter(abilityScores,
-                    hitPoints != null ? hitPoints : new DefaultHitPoints(DefaultConstitution.builder().build()),
-                    experiencePoints,
-                    backgroundInformation);
-        }
+    public DefaultCharacterBuilder() {
+        abilityScores = AbilityScores.builder().build();
+        experiencePoints = DefaultExperiencePoints.builder().build();
     }
+
+    public DefaultCharacter build() {
+        return new DefaultCharacter(abilityScores,
+                hitPoints != null ? hitPoints : new DefaultHitPoints(DefaultConstitution.builder().build()),
+                experiencePoints,
+                backgroundInformation);
+    }
+}
 }
