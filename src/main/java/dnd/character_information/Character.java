@@ -4,7 +4,7 @@ interface Character {
 
     HitPoints getHitPoints();
 
-    void increaseExperience(int i);
+    void increaseExperience(int amount);
 
     int getLevel();
 

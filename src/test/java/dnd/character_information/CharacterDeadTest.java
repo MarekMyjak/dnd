@@ -9,7 +9,10 @@ class CharacterDeadTest {
     @Test
     void characterIsDeadOnZeroHitPointsTest() {
 //        given
-        HitPoints hitPoints = new DefaultHitPoints(0);
+        HitPoints hitPoints = new DefaultHitPoints(DefaultConstitution.builder().build(),
+                DefaultExperiencePoints.builder().build());
+//        when
+        hitPoints.takeDamage(6);
 //        then
         assertThat(hitPoints.isDead()).isEqualTo(true);
     }
@@ -17,7 +20,10 @@ class CharacterDeadTest {
     @Test
     void characterIsDeadOnNegativeHitPointsTest() {
 //        given
-        HitPoints hitPoints = new DefaultHitPoints(-7);
+        HitPoints hitPoints = new DefaultHitPoints(DefaultConstitution.builder().build(),
+                DefaultExperiencePoints.builder().build());
+//        when
+        hitPoints.takeDamage(15);
 //        then
         assertThat(hitPoints.getActual()).isEqualTo(0);
         assertThat(hitPoints.isDead()).isEqualTo(true);
@@ -26,7 +32,8 @@ class CharacterDeadTest {
     @Test
     void characterIsNotDeadTest() {
 //        given
-        HitPoints hitPoints = new DefaultHitPoints(10);
+        HitPoints hitPoints = new DefaultHitPoints(DefaultConstitution.builder().build(),
+                DefaultExperiencePoints.builder().build());
 //        then
         assertThat(hitPoints.isDead()).isEqualTo(false);
     }

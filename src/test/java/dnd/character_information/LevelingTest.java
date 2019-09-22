@@ -19,7 +19,7 @@ class LevelingTest {
         character.increaseExperience(1000);
 //        then
         assertThat(character.getLevel()).isEqualTo(2);
-        assertThat(character.getHitPoints().getActual()).isEqualTo(12);
+        assertThat(character.getHitPoints().getMaximum()).isEqualTo(12);
     }
 
     @Test
@@ -30,7 +30,7 @@ class LevelingTest {
         character.increaseExperience(2000);
 //        then
         assertThat(character.getLevel()).isEqualTo(3);
-        assertThat(character.getHitPoints().getActual()).isEqualTo(18);
+        assertThat(character.getHitPoints().getMaximum()).isEqualTo(18);
     }
 
 
@@ -42,34 +42,34 @@ class LevelingTest {
         character.increaseExperience(15000);
 //        then
         assertThat(character.getLevel()).isEqualTo(16);
-        assertThat(character.getHitPoints().getActual()).isEqualTo(96);
+        assertThat(character.getHitPoints().getMaximum()).isEqualTo(96);
     }
 
     @Test
     void levelingWithConstitutionTest() {
 //        given
         Character character = DefaultCharacter.builder()
-                .hitPoints(new DefaultHitPoints(DefaultConstitution.builder().value(16).build(), 1))
+                .constitution(16)
                 .build();
-        assertThat(character.getHitPoints().getMaximum(1)).isEqualTo(8);
+        assertThat(character.getHitPoints().getMaximum()).isEqualTo(8);
 //        when
         character.increaseExperience(1000);
 //        then
         assertThat(character.getLevel()).isEqualTo(2);
-        assertThat(character.getHitPoints().getMaximum(2)).isEqualTo(16);
+        assertThat(character.getHitPoints().getMaximum()).isEqualTo(16);
     }
 
     @Test
     void levelingWithLowConstitutionTest() {
 //        given
         Character character = DefaultCharacter.builder()
-                .hitPoints(new DefaultHitPoints(DefaultConstitution.builder().value(1).build(), 1))
+                .constitution(1)
                 .build();
 //        when
         character.increaseExperience(1000);
 //        then
         assertThat(character.getLevel()).isEqualTo(2);
-        assertThat(character.getHitPoints().getActual()).isEqualTo(12);
+        assertThat(character.getHitPoints().getMaximum()).isEqualTo(12);
     }
 
     @Test
@@ -84,6 +84,6 @@ class LevelingTest {
         character.increaseExperience(1000);
 //        then
         assertThat(character.getLevel()).isEqualTo(2);
-        assertThat(character.getHitPoints().getActual()).isEqualTo(12);
+        assertThat(character.getHitPoints().getMaximum()).isEqualTo(12);
     }
 }
