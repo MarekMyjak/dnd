@@ -61,7 +61,8 @@ public static class DefaultCharacterBuilder {
 
     public DefaultCharacter build() {
         return new DefaultCharacter(abilityScores,
-                hitPoints != null ? hitPoints : new DefaultHitPoints(DefaultConstitution.builder().build()),
+                hitPoints != null ? hitPoints : new DefaultHitPoints(DefaultConstitution.builder().build(),
+                        experiencePoints.getLevel()),
                 experiencePoints,
                 backgroundInformation);
     }

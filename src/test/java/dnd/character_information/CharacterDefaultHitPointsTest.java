@@ -20,7 +20,7 @@ class CharacterDefaultHitPointsTest {
 //        given
         int expectedHitPoints = 7;
         Character character = DefaultCharacter.builder()
-                .hitPoints(new DefaultHitPoints(DefaultConstitution.builder().value(14).build()))
+                .hitPoints(new DefaultHitPoints(DefaultConstitution.builder().value(14).build(), 1))
                 .build();
 //        then
         assertThat(character.getHitPoints().getActual()).isEqualTo(expectedHitPoints);
@@ -31,7 +31,7 @@ class CharacterDefaultHitPointsTest {
 //        given
         int expectedHitPoints = 6;
         Character character = DefaultCharacter.builder()
-                .hitPoints(new DefaultHitPoints(DefaultConstitution.builder().value(1).build()))
+                .hitPoints(new DefaultHitPoints(DefaultConstitution.builder().value(1).build(), 1))
                 .build();
 //        then
         assertThat(character.getHitPoints().getActual()).isEqualTo(expectedHitPoints);

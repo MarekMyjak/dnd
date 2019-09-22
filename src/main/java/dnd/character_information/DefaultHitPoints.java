@@ -9,26 +9,24 @@ import lombok.experimental.FieldDefaults;
 public class DefaultHitPoints implements HitPoints {
     private static final int DEFAULT_HIT_POINTS = 5;
     int actual;
-    int maximum;
     Constitution constitution;
 
-    DefaultHitPoints(Constitution constitution) {
+    DefaultHitPoints(Constitution constitution, int level) {
         this.constitution = constitution;
-        maximum = DEFAULT_HIT_POINTS + constitution.getHitPointsModifiers();
-        actual = maximum;
+        actual = getMaximum(level);
     }
 
     DefaultHitPoints(int amount) {
         if (amount < 0) {
             amount = 0;
         }
-        maximum = amount;
         actual = amount;
     }
 
     @Override
-    public int getMaximum() {
-        return maximum;
+    public int getMaximum(int level) {
+        return DEFAULT_HIT_POINTS + constitution.getHitPointsModifiers()
+                + ((level - 1) * (5 + constitution.getHitPointsModifiers()));
     }
 
     @Override
@@ -43,7 +41,6 @@ public class DefaultHitPoints implements HitPoints {
     public void increaseHitPointsPerLevel() {
         int amount = 5 + constitution.getHitPointsModifiers();
         actual += amount;
-        maximum += amount;
     }
 
     @Override
